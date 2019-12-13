@@ -20,12 +20,24 @@ public class ZodiacSignController {
     @Autowired
     private ZodiacSignMapper zodiacSignMapper;
 
+    /**
+     * GET http://localhost:8080/api/zodiac/sign/json
+     * @return
+     */
     @RequestMapping("/json")
     public ResultJson getList(){
 
         return new ResultJson(true,200,"",zodiacSignNoXmlMapper.list());
     }
 
+    /**
+     * POST http://localhost:8080/api/zodiac/sign/param
+     * Content-Type: application/json
+     *
+     * {"zodiacName":"鼠"}
+     * @param map
+     * @return
+     */
     @RequestMapping("/param")
     public ResultJson getListByParam(@RequestBody Map<String,Object> map) {
 
