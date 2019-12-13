@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url:  jdbc:mysql:///test?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  configuration:
+    #开启下划线到驼峰的自动转换 作用:将数据库字段根据驼峰规则自动注入到对象属性
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*/*.xml,classpath:mapper/*.xml
+  type-aliases-package: com.dh.entity
