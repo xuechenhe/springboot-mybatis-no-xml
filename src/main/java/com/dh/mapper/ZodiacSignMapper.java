@@ -2,8 +2,12 @@ package com.dh.mapper;
 
 import com.dh.entity.ZodiacSign;
 import com.dh.entity.ZodiacSignExample;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface ZodiacSignMapper {
     /**
@@ -93,4 +97,11 @@ public interface ZodiacSignMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(ZodiacSign record);
+
+    @Select({
+            "<script>",
+            "select * from zodiac_sign where zodiac_name= #{zodiacName}",
+            "</script>"
+    })
+    List<ZodiacSign> selectByMap(Map<String, Object> map);
 }

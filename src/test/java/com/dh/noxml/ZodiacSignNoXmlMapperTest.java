@@ -1,11 +1,11 @@
-package com.dh.mapper;
+package com.dh.noxml;
 
 import com.dh.StartApplication;
 import com.dh.entity.ZodiacSign;
-import com.dh.entity.ZodiacSignExample;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,35 +13,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+@SuppressWarnings("ALL")
 @SpringBootTest(classes = StartApplication.class)
 @RunWith(SpringRunner.class)
-public class ZodiacSignMapperTest {
+public class ZodiacSignNoXmlMapperTest {
     @Autowired
-    private ZodiacSignMapper zodiacSignMapper;
+    private ZodiacSignNoXmlMapper zodiacSignMapper;
+    @Test
+    public void test_list(){
+        List<ZodiacSign> list = zodiacSignMapper.list();
+        System.err.println(list);
+    }
 
     @Test
-
-    public void countByExample() {
-        long l = zodiacSignMapper.countByExample(null);
-        System.err.println(l);
+    public void test_selectParam() {
+        List<ZodiacSign> zodiacSigns = zodiacSignMapper.selectByParam("牛");
+        System.err.println(zodiacSigns);
     }
 
     @Test
     public void test_selectByMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("zodiacName","鼠");
+        map.put("ranking","1");
         List<ZodiacSign> zodiacSigns = zodiacSignMapper.selectByMap(map);
-        System.err.println(zodiacSigns);
-    }
-
-    @Test
-    public void test_selectByExample() {
-        ZodiacSignExample example = new ZodiacSignExample();
-        example.createCriteria().andZodiacNameEqualTo("鼠");
-        List<ZodiacSign> zodiacSigns = zodiacSignMapper.selectByExample(example);
         System.err.println(zodiacSigns);
     }
 }
