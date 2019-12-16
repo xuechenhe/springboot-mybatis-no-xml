@@ -1,5 +1,6 @@
 package com.dh.controller;
 
+import com.dh.annotation.EnhanceAnnotation;
 import com.dh.mapper.ZodiacSignMapper;
 import com.dh.noxml.ZodiacSignNoXmlMapper;
 import com.dh.result.ResultJson;
@@ -42,5 +43,10 @@ public class ZodiacSignController {
     public ResultJson getListByParam(@RequestBody Map<String,Object> map) {
 
         return new ResultJson(true, 200, "", zodiacSignMapper.selectByMap(map));
+    }
+    @EnhanceAnnotation
+    @RequestMapping("/aop/enhance")
+    public ResultJson enhance(String zodiacName){
+        return new ResultJson(true, 200, "", zodiacName);
     }
 }
